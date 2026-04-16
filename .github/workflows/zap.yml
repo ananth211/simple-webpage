@@ -12,4 +12,4 @@ jobs:
     - name: ZAP Scan
       uses: zaproxy/action-baseline@v0.10.0
       with:
-        target: 'https://YOUR_USERNAME.github.io/simple-webpage/'
+        target: 'https://ananth211.github.io/simple-webpage/'
