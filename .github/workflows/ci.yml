@@ -1,0 +1,25 @@
+name: Simple CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: List files
+      run: ls -l
+
+    - name: Check HTML exists
+      run: |
+        if [ -f index.html ]; then
+          echo "HTML file exists ✅"
+        else
+          echo "HTML missing ❌"
+          exit 1
+        fi
