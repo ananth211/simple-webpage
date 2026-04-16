@@ -17,7 +17,7 @@ jobs:
 
     - name: Check HTML exists
       run: |
-        if [ -f index.html ]; then
+        if [ -f picture.html ]; then
           echo "HTML file exists ✅"
         else
           echo "HTML missing ❌"
