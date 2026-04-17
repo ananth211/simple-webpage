@@ -1,8 +1,12 @@
-name: CodeQL Scan
+name: CodeQL Analysis
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: '0 0 * * 0'
 
 jobs:
   analyze:
@@ -10,11 +14,21 @@ jobs:
 
     permissions:
       security-events: write
+      actions: read
+      contents: read
+
+    strategy:
+      matrix:
+        language: [javascript]
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-    - name: Initialize CodeQL (disable language scan)
+    - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-         languages: []
+        languages: ${{ matrix.language }}
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
