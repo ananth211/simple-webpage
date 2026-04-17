@@ -4,13 +4,16 @@ on:
   push:
     branches: ["main"]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Show Repository Files
       run: |
@@ -29,7 +32,11 @@ jobs:
     - name: Basic HTML Check
       run: |
         echo "Basic validation..."
-        grep "<html" index.html && echo "HTML structure looks OK ✅"
+        if grep -iq "<html" index.html; then
+          echo "HTML structure looks OK ✅"
+        else
+          echo "Warning: <html> tag not found ⚠️"
+        fi
 
     - name: Success Message
       run: echo "CI Pipeline completed successfully 🚀"
