@@ -1,35 +1,140 @@
-name: Simple CI Pipeline
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Demo | Ananth</title>
 
-on:
-  push:
-    branches: [ "main" ]
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            scroll-behavior: smooth;
+        }
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+        .container {
+            padding: 60px 20px;
+        }
 
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
 
-    - name: Show Repository Files
-      run: |
-        echo "Listing files..."
-        ls -R
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
 
-    - name: Validate HTML File
-      run: |
-        if [ -f index.html ]; then
-          echo "index.html found ✅"
-        else
-          echo "index.html NOT found ❌"
-          exit 1
-        fi
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
 
-    - name: Basic HTML Check
-      run: |
-        echo "Basic validation..."
-        grep "<html" index.html && echo "HTML structure looks OK ✅"
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    - name: Success Message
-      run: echo "CI Pipeline completed successfully 🚀"
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #00c6ff;
+            color: black;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #00ffcc;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        #clock {
+            font-size: 1.1em;
+            margin-top: 10px;
+            color: #00ffcc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🚀 CI/CD Pipeline Demo</h1>
+        <p>Built by Ananth</p>
+        <p>Automating build, security, and deployment using GitHub Actions</p>
+
+        <div id="clock">Loading time...</div>
+
+        <div class="card">
+            <h2>⚙️ Continuous Integration</h2>
+            <p>Every code push triggers automated checks and validation.</p>
+        </div>
+
+        <div class="card">
+            <h2>🔐 Security Scanning</h2>
+            <p>CodeQL, Snyk, and OWASP ZAP ensure your app is secure.</p>
+        </div>
+
+        <div class="card">
+            <h2>🌍 Deployment</h2>
+            <p>Automatically deployed using GitHub Pages.</p>
+        </div>
+
+        <button class="btn" onclick="viewPipeline()">View Pipeline</button>
+
+        <footer>
+            <p>✨ DevOps Project | CI/CD + Security + Deployment</p>
+        </footer>
+    </div>
+
+    <script>
+        // Live Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById("clock").innerText =
+                "🕒 " + now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Button action
+        function viewPipeline() {
+            alert("🚀 CI/CD Pipeline Triggered (Demo Mode)");
+
+            // Scroll to first card
+            document.querySelector(".card").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Animate cards on load
+        window.addEventListener("load", () => {
+            const cards = document.querySelectorAll(".card");
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add("show");
+                }, index * 300);
+            });
+        });
+    </script>
+</body>
+</html>
