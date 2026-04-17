@@ -1,4 +1,4 @@
-name: Simple CI
+name: Simple CI Pipeline
 
 on:
   push:
@@ -9,17 +9,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: List files
-      run: ls -l
-
-    - name: Check HTML exists
+    - name: Show Repository Files
       run: |
-        if [ -f picture.html ]; then
-          echo "HTML file exists ✅"
+        echo "Listing files..."
+        ls -R
+
+    - name: Validate HTML File
+      run: |
+        if [ -f index.html ]; then
+          echo "index.html found ✅"
         else
-          echo "HTML missing ❌"
+          echo "index.html NOT found ❌"
           exit 1
         fi
+
+    - name: Basic HTML Check
+      run: |
+        echo "Basic validation..."
+        grep "<html" index.html && echo "HTML structure looks OK ✅"
+
+    - name: Success Message
+      run: echo "CI Pipeline completed successfully 🚀"
