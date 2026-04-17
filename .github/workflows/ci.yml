@@ -3,6 +3,8 @@ name: Simple CI Pipeline
 on:
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -17,26 +19,42 @@ jobs:
 
     - name: Show Repository Files
       run: |
-        echo "Listing files..."
+        echo "📂 Listing files in repo..."
         ls -R
 
     - name: Validate HTML File
       run: |
-        if [ -f index.html ]; then
-          echo "index.html found ✅"
+        if [ -f picture.html ]; then
+          echo "✅ picture.html found"
         else
-          echo "index.html NOT found ❌"
+          echo "❌ picture.html NOT found"
           exit 1
         fi
 
-    - name: Basic HTML Check
+    - name: Basic HTML Structure Check
       run: |
-        echo "Basic validation..."
-        if grep -iq "<html" index.html; then
-          echo "HTML structure looks OK ✅"
+        echo "🔍 Checking HTML structure..."
+        if grep -iq "<html" picture.html; then
+          echo "✅ HTML structure looks OK"
         else
-          echo "Warning: <html> tag not found ⚠️"
+          echo "⚠️ Warning: <html> tag not found"
+        fi
+
+    - name: Check for Title Tag
+      run: |
+        if grep -iq "<title>" picture.html; then
+          echo "✅ Title tag found"
+        else
+          echo "⚠️ Warning: No <title> tag found"
+        fi
+
+    - name: Check for CSS Usage
+      run: |
+        if grep -iq "<style" picture.html; then
+          echo "✅ CSS detected"
+        else
+          echo "⚠️ No CSS found"
         fi
 
     - name: Success Message
-      run: echo "CI Pipeline completed successfully 🚀"
+      run: echo "🚀 CI Pipeline completed successfully!"
