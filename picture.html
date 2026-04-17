@@ -1,11 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First CI Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Demo | Ananth</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #00c6ff;
+            color: black;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #00ffcc;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Hello Ananth 🚀</h1>
-    <p>This is my CI/CD demo page</p>
-    <p>make it clear and conquer </p>
+    <div class="container">
+        <h1>🚀 CI/CD Pipeline Demo</h1>
+        <p>Built by Ananth</p>
+        <p>Automating build, security, and deployment using GitHub Actions</p>
+
+        <div class="card">
+            <h2>⚙️ Continuous Integration</h2>
+            <p>Every code push triggers automated checks and validation.</p>
+        </div>
+
+        <div class="card">
+            <h2>🔐 Security Scanning</h2>
+            <p>CodeQL, Snyk, and OWASP ZAP ensure your app is secure.</p>
+        </div>
+
+        <div class="card">
+            <h2>🌍 Deployment</h2>
+            <p>Automatically deployed using GitHub Pages.</p>
+        </div>
+
+        <a href="#" class="btn">View Pipeline</a>
+
+        <footer>
+            <p>✨ DevOps Project | CI/CD + Security + Deployment</p>
+        </footer>
+    </div>
 </body>
 </html>
