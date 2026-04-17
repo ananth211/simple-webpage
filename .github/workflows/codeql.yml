@@ -17,4 +17,4 @@ jobs:
     - name: Initialize CodeQL (disable language scan)
       uses: github/codeql-action/init@v3
       with:
-        languages: javascript
+         languages: []
