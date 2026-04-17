@@ -1,4 +1,4 @@
-name: CodeQL Scan
+name: CodeQL Security Scan
 
 on:
   push:
@@ -8,18 +8,26 @@ on:
 
 jobs:
   analyze:
+    name: Analyze Code
     runs-on: ubuntu-latest
 
     permissions:
       security-events: write
 
-    steps:
-    - uses: actions/checkout@v4
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-    - uses: github/codeql-action/init@v3
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v4
       with:
         languages: javascript
 
-    - uses: github/codeql-action/autobuild@v3
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v4
 
-    - uses: github/codeql-action/analyze@v3
+    - name: Run CodeQL Analysis
+      uses: github/codeql-action/analyze@v4
